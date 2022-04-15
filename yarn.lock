@@ -6541,6 +6541,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+material-components-web-elm@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/material-components-web-elm/-/material-components-web-elm-8.0.1.tgz#55319389cbc5d29bb7eb8d5f416c2975f2edb80a"
+  integrity sha512-PUIYsz614vDOIXA9M0y+254ydA0YtkYtzIxVct/UCp5a+6vJ8g0gqQu4WtDFInMcvwoWnK86gH+U0QqMZwUACQ==
+
 math-expression-evaluator@^1.2.14:
   version "1.3.14"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.3.14.tgz#0ebeaccf65fea0f6f5a626f88df41814e5fcd9bf"
