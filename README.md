@@ -49,3 +49,6 @@ And to check production. _(need to run build first)_
 ```bash
 yarn preview
 ```
+
+--------------
+Template developed by [Johann Gonçalves Pereira](https://github.com/Johann-Goncalves-Pereira)
