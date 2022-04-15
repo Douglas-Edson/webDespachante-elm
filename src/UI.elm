@@ -62,6 +62,9 @@ caseNamePage route =
         Route.Home_ ->
             "Home"
 
+        Route.Login ->
+            "Login"
+
         Route.About ->
             "About"
 
