@@ -1,0 +1,37 @@
+.login {
+    &_elevation {
+        max-width: 30rem;
+        background-color: rgb(172 172 172);
+
+    }
+
+    &_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+    }
+
+    &_header {
+        background-color: #131D52;
+        border-radius: 0rem 0rem 2rem 2rem;
+
+        &_grid {
+            grid-template-columns: 100px 100px 100px;
+            justify-items: center;
+
+        }
+
+    }
+
+    &_animation {
+        max-height: 20vh;
+    }
+
+    &_title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #8D93D0;
+    }
+}
