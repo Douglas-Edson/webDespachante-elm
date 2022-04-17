@@ -119,7 +119,7 @@ view model =
                                 [ Html.img
                                     [ class "login_animation"
                                     , Html.Attributes.src
-                                        "https://gateway.pinata.cloud/ipfs/QmcjPa89rfPtcTSngZ8r5S1CbAhj5QfHsfhZcg39zSLDDj"
+                                        "https://despachantepr.com/o/animation_300_kmana8xo.gif"
                                     ]
                                     []
                                 ]
@@ -157,6 +157,8 @@ view model =
                                 [ Button.raised
                                     (Button.config
                                         |> Button.setAttributes [ class "md_fullWidth" ]
+                                        |> Button.setOnClick ClickedSignIn
+                                        |> Button.setHref (Just "#")
                                     )
                                     "Entrar"
                                 ]
