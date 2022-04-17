@@ -1,6 +1,8 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
+import Auth
 import Components.Svg as SVG exposing (Logo(..))
+import Effect exposing (Effect)
 import Gen.Params.Home_ exposing (Params)
 import Gen.Route as Route
 import Html exposing (Html, a, div, h1, h2, h5, p, section, text)
@@ -8,7 +10,7 @@ import Html.Attributes exposing (alt, attribute, class, href, id, rel, src, styl
 import Html.Attributes.Aria exposing (ariaLabel, ariaLabelledby)
 import Page
 import Request
-import Shared
+import Shared exposing (User)
 import Svg exposing (desc)
 import UI exposing (pageConfig)
 import View exposing (View, placeholder)
@@ -16,11 +18,14 @@ import View exposing (View, placeholder)
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
-    Page.sandbox
-        { init = init
-        , update = update
-        , view = view
-        }
+    Page.protected.advanced
+        (\user ->
+            { init = init
+            , update = update
+            , view = view user
+            , subscriptions = subscriptions
+            }
+        )
 
 
 
@@ -31,9 +36,9 @@ type alias Model =
     {}
 
 
-init : Model
+init : ( Model, Effect msg )
 init =
-    {}
+    ( {}, Effect.none )
 
 
 
@@ -44,26 +49,28 @@ type Msg
     = ReplaceMe
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Effect msg )
 update msg model =
     case msg of
         ReplaceMe ->
-            model
+            ( model, Effect.none )
 
 
 
 -- VIEW
 
 
-view : Model -> View Msg
-view model =
+view : User -> Model -> View Msg
+view user model =
     { title = "Revex - Home"
     , body =
         UI.layout
             { pageConfig
                 | route = Route.Home_
                 , mainAttrs = [ class "flex flex-col gap-8 justify-center items-center" ]
-                , mainContent = viewPlaceholder
+                , mainContent = [ text <| "Olá " ++ user.name ++ "!" ]
+
+                -- viewPlaceholder
             }
     }
 
@@ -112,3 +119,12 @@ viewPlaceholder =
         , h2 [ class "text-center opacity-60 text-xs" ] [ text "Start a Project with these features integrated" ]
         ]
     ]
+
+
+
+-- Sub
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
