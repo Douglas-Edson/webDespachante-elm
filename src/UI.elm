@@ -68,6 +68,9 @@ caseNamePage route =
         Route.About ->
             "About"
 
+        Route.Sessions__CreateService ->
+            "Create Service"
+
         Route.NotFound ->
             "Not Found"
 
