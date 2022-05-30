@@ -28,6 +28,7 @@ type alias Model =
 
 type Msg
     = SignIn User
+    | CreateService
     | SignOut
 
 
@@ -45,6 +46,11 @@ update req msg model =
         SignIn user ->
             ( { model | user = Just user }
             , Request.pushRoute Gen.Route.Home_ req
+            )
+
+        CreateService ->
+            ( model
+            , Request.pushRoute Gen.Route.Sessions__CreateService req
             )
 
         SignOut ->
