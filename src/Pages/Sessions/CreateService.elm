@@ -3,9 +3,12 @@ module Pages.Sessions.CreateService exposing (Model, Msg, page)
 import Effect exposing (Effect)
 import Gen.Params.Sessions.CreateService exposing (Params)
 import Gen.Route as Route
+import Helpers.Form.Select as HelpersForm
+import Html
 import Html.Attributes
 import Page
 import Request
+import Service.Models as Models
 import Shared exposing (User)
 import UI exposing (pageConfig)
 import View exposing (View)
@@ -28,12 +31,18 @@ page shared req =
 
 
 type alias Model =
-    {}
+    { state : Models.StateToCreateService
+    }
 
 
 init : ( Model, Effect Msg )
 init =
-    ( {}, Effect.none )
+    ( { state =
+            { selectService = Nothing
+            }
+      }
+    , Effect.none
+    )
 
 
 
@@ -41,13 +50,18 @@ init =
 
 
 type Msg
-    = ReplaceMe
+    = ServiceSelected (Maybe String)
 
 
 update : Msg -> Model -> ( Model, Effect Msg )
 update msg model =
     case msg of
-        ReplaceMe ->
+        ServiceSelected service ->
+            -- let
+            --     state_ =
+            --         model.state
+            --             |> (\state__ -> { state__ | selectService = Nothing })
+            -- in
             ( model, Effect.none )
 
 
@@ -71,7 +85,23 @@ view user model =
         UI.layout
             { pageConfig
                 | route = Route.Sessions__CreateService
-                , mainAttrs = [ Html.Attributes.class "flex flex-col gap-8 justify-center items-center" ]
-                , mainContent = []
+                , mainAttrs = [ Html.Attributes.class "flex flex-col  justify-center items-center" ]
+                , mainContent =
+                    [ selectService ]
             }
     }
+
+
+selectService : Html.Html Msg
+selectService =
+    Html.section
+        [ Html.Attributes.class "CreateService_select" ]
+        [ HelpersForm.view
+            { labelSelect = "Selecione o Serviço"
+            , disabled = False
+            , errors = []
+            , selected = Nothing
+            , items = [ ( "id", "Primeiro  Emplacamento" ) ]
+            , onSelect = Just ServiceSelected
+            }
+        ]
